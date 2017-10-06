@@ -1,0 +1,44 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ApiResource(attributes={"filters"={"player.search_filter"}})
+ * @ORM\Entity
+ */
+class Player
+{
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer", name="id")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", name="username")
+     * @Assert\NotBlank
+     */
+    private $username;
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getUsername() : string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): Player
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+}
